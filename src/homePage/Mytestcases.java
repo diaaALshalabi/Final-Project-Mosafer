@@ -89,14 +89,30 @@ public class Mytestcases {
 		@Test
 		public void SwitchHotels() {
 	
-			WebElement SearchHotels = driver.findElement(By.cssSelector("input[placeholder='Search for hotels or places']"));
+			WebElement HotelTab=driver.findElement(By.id("uncontrolled-tab-example-tab-hotels"));
+			HotelTab.click();
 			
-			SearchHotels.sendKeys();
+			WebElement searchLoaction = driver.findElement(By.cssSelector(".sc-phbroq-2.uQFRS.AutoComplete__Input "));
+			
+			if(driver.getCurrentUrl().contains("en")) {
+				String [] English = { "Dubai" , "Jeddah" , "Riyadh"};
+				int randomIndex = rand.nextInt(English.length);
+				searchLoaction.sendKeys(English[randomIndex]);
+			}else {
+					
+				if(driver.getCurrentUrl().contains("ar")) {
+					String[] Arabic = { "دبي" , "الرياض"};
+					int randomIndex = rand.nextInt(Arabic.length);
+					searchLoaction.sendKeys(Arabic[randomIndex]);
+					
+				}
+				
+				
+			}
 			
 			
+		}
 			
-			
-		
 	}
 
-}
+
