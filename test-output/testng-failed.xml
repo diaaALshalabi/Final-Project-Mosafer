@@ -5,7 +5,7 @@
     <classes>
       <class name="homePage.Mytestcases">
         <methods>
-          <include name="Check"/>
+          <include name="RandomLanguage"/>
           <include name="MySetup"/>
         </methods>
       </class> <!-- homePage.Mytestcases -->
