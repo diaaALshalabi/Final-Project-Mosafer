@@ -5,8 +5,8 @@
     <classes>
       <class name="homePage.Mytestcases">
         <methods>
-          <include name="RandomLanguage"/>
           <include name="MySetup"/>
+          <include name="checkSearchHotels"/>
         </methods>
       </class> <!-- homePage.Mytestcases -->
     </classes>
