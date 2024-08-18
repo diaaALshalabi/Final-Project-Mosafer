@@ -172,7 +172,7 @@ public class Mytestcases {
 
 	}
 
-	@Test
+	@Test(priority = 11)
 	public void SortItemsLowestToHighestPrice() {
 		 
 		boolean ExpectedResult = true; 
