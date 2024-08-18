@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -134,7 +135,72 @@ public class Mytestcases {
 			}
 
 		}
+		WebElement ListOfLocations = driver.findElement(By.cssSelector(".sc-phbroq-4.gGwzVo.AutoComplete__List"));
+
+		WebElement firstResult = ListOfLocations.findElements(By.tagName("li")).get(1);
+		firstResult.click();
 
 	}
 
+	@Test(priority = 9)
+	public void RandomlySelectTheNumberOfVistor() {
+
+		WebElement selector = driver
+				.findElement(By.xpath("//select[@data-testid='HotelSearchBox__ReservationSelect_Select']"));
+
+		int randomindex = rand.nextInt(2);
+		Select select = new Select(selector);
+		select.selectByIndex(randomindex);
+
+		WebElement SearchHotelsButton = driver
+				.findElement(By.xpath("//button[@data-testid='HotelSearchBox__SearchButton']"));
+		SearchHotelsButton.click();
+	}
+
+	@Test(priority = 10)
+
+	public void CheckThePageFullyLoaded() throws InterruptedException {
+
+		boolean expectedResult = true;
+		Thread.sleep(10000);
+		String results = driver.findElement(By.xpath("//span[@data-testid='HotelSearchResult__resultsFoundCount']"))
+				.getText();
+
+		boolean finished = results.contains("وجدنا") || results.contains("found");
+
+		Assert.assertEquals(finished, expectedResult);
+
+	}
+
+	@Test
+	public void SortItemsLowestToHighestPrice() {
+		 
+		boolean ExpectedResult = true; 
+		WebElement LowestButton= driver.findElement(By.xpath("//button[@data-testid='HotelSearchResult__sort__LOWEST_PRICE']"));
+		LowestButton.click();
+		
+		
+		WebElement PricesContainer  = driver.findElement(By.cssSelector(".sc-htpNat.KtFsv.col-9"));
+		
+		List<WebElement> Allprices= PricesContainer .findElements(By.className("Price__Value"));
+		
+		String LowestPrice= Allprices.get(0).getText();
+		String HighestPrice=Allprices.get(Allprices.size()-1).getText();
+		
+		
+		int LowestPriceInt = Integer.parseInt(LowestPrice);
+		int HighestPriceInt= Integer.parseInt(HighestPrice);
+		
+		
+		boolean ActualResult = LowestPriceInt < HighestPriceInt;
+		
+		
+		Assert.assertEquals(ActualResult, ExpectedResult);
+		
+		
+		
+		
+	}
+	
+	
 }
