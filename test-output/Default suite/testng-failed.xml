@@ -5,8 +5,8 @@
     <classes>
       <class name="homePage.Mytestcases">
         <methods>
+          <include name="CheckThePageFullyLoaded"/>
           <include name="MySetup"/>
-          <include name="SwitchHotels"/>
         </methods>
       </class> <!-- homePage.Mytestcases -->
     </classes>
